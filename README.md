@@ -97,3 +97,13 @@ Set-ExecutionPolicy Unrestricted
 
 ## ESP32-C3 ESP-Dev-Kits Documentation:
 [![ESP32-C3 ESP-Dev-Kits Documentation](esp-dev-kits-en-master-esp32c3.webp)](esp-dev-kits-en-master-esp32c3.pdf)
+
+---
+
+
+## ST7789 repo by @russhughes:
+- [st7789_mpy](https://github.com/russhughes/st7789_mpy)
+- [st7789_mpy examples](https://github.com/russhughes/st7789_mpy/tree/master/examples)
+- [st7789_mpy configs](https://github.com/russhughes/st7789_mpy/tree/master/examples/configs)
+- [st7789_mpy fonts](https://github.com/russhughes/st7789_mpy/tree/master/fonts)
+- [st7789_mpy utils](https://github.com/russhughes/st7789_mpy/tree/master/utils)
