@@ -138,16 +138,30 @@ jobs:
           ls -lh micropython/ports/esp32/build-ESP32_C3_CUSTOM/bootloader/*.bin
           ls -lh micropython/ports/esp32/build-ESP32_C3_CUSTOM/partition_table/*.bin
           
+      - name: Prepare artifacts for release
+        run: |
+          mkdir -p artifacts
+          cp micropython/ports/esp32/build-ESP32_C3_CUSTOM/firmware.bin artifacts/
+          cp micropython/ports/esp32/build-ESP32_C3_CUSTOM/micropython.bin artifacts/
+          cp micropython/ports/esp32/build-ESP32_C3_CUSTOM/bootloader/bootloader.bin artifacts/
+          cp micropython/ports/esp32/build-ESP32_C3_CUSTOM/partition_table/partition-table.bin artifacts/
 
-      - name: Upload firmware artifacts
-        uses: actions/upload-artifact@v4.6.2
-        with:
-          name: esp32c3-firmware
-          path: |
-            micropython/ports/esp32/build-ESP32_C3_CUSTOM/firmware.bin
-            micropython/ports/esp32/build-ESP32_C3_CUSTOM/bootloader/bootloader.bin
-            micropython/ports/esp32/build-ESP32_C3_CUSTOM/partition_table/partition-table.bin
-            micropython/ports/esp32/build-ESP32_C3_CUSTOM/micropython.bin
+      - name: Verificar existencia de los cuatro binarios
+        run: |
+          if [ ! -f ./artifacts/firmware.bin ] || [ ! -f ./artifacts/micropython.bin ] || [ ! -f ./artifacts/bootloader.bin ] || [ ! -f ./artifacts/partition-table.bin ]; then
+            echo "Falta uno o más archivos binarios necesarios, cancelando release."
+            exit 1
+          fi
+
+      #- name: Upload firmware artifacts
+       # uses: actions/upload-artifact@v4.6.2
+       # with:
+        #  name: esp32c3-firmware
+         # path: |
+          #  micropython/ports/esp32/build-ESP32_C3_CUSTOM/firmware.bin
+           # micropython/ports/esp32/build-ESP32_C3_CUSTOM/bootloader/bootloader.bin
+          #  micropython/ports/esp32/build-ESP32_C3_CUSTOM/partition_table/partition-table.bin
+           # micropython/ports/esp32/build-ESP32_C3_CUSTOM/micropython.bin
 
       - name: Get MicroPython Version from mpconfig.h
         run: |
@@ -169,13 +183,6 @@ jobs:
         id: tag
         run: echo "TAG_NAME=release-$(date +'%Y%m%d-%H%M')" >> $GITHUB_ENV
 
-      - name: Verificar existencia de los cuatro binarios
-        run: |
-          if [ ! -f ./artifacts/firmware.bin ] || [ ! -f ./artifacts/micropython.bin ] || [ ! -f ./artifacts/bootloader.bin ] || [ ! -f ./artifacts/partition-table.bin ]; then
-            echo "Falta uno o más archivos binarios necesarios, cancelando release."
-            exit 1
-          fi
-      
       - name: GH Release
         uses: softprops/action-gh-release@v2.3.2
         with:
