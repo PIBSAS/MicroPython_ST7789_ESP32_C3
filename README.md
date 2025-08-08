@@ -91,3 +91,9 @@ python -m esptool --chip esp32c3 --baud 460800 write_flash 0x0 firmware.bin
 Set-ExecutionPolicy Unrestricted
 ```
 - Close the Terminal now you can activate the Python Virtual Enmvironment
+
+
+---
+
+## ESP32-C3 ESP-Dev-Kits Documentation:
+[![ESP32-C3 ESP-Dev-Kits Documentation](esp-dev-kits-en-master-esp32c3.webp)](esp-dev-kits-en-master-esp32c3.pdf)
