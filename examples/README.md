@@ -30,13 +30,13 @@ configuration modules for various devices and displays.
 
 - Displays a clock over a background image on the display.
 
-  The buttons on the module can be used to set the time.
+- The buttons on the module can be used to set the time.
 
-  Background images courtesy of the NASA image and video gallery available at [https://images.nasa.gov](https://images.nasa.gov/)
+- Background images courtesy of the NASA image and video gallery available at [https://images.nasa.gov](https://images.nasa.gov/)
 
-  The Font is Copyright 2018 The Pacifico Project Authors (https://github.com/googlefonts/Pacifico)
-  This Font Software is licensed under the SIL Open Font License, Version 1.1.
-  This license is copied below, and is also available with a FAQ at: http://scripts.sil.org/OFL
+- The Font is Copyright 2018 The Pacifico Project Authors (https://github.com/googlefonts/Pacifico)
+- This Font Software is licensed under the SIL Open Font License, Version 1.1.
+- This license is copied below, and is also available with a FAQ at: http://scripts.sil.org/OFL
 
 
 ## feathers.py
@@ -58,13 +58,13 @@ configuration modules for various devices and displays.
 - Draw a full screen jpg using the slower but less memory intensive method of blitting
   each Minimum Coded Unit (MCU) block. Usually 8×8pixels but can be other multiples of 8.
 
-  bigbuckbunny.jpg (c) copyright 2008, Blender Foundation / [www.bigbuckbunny.org](www.bigbuckbunny.org)
+- bigbuckbunny.jpg (c) copyright 2008, Blender Foundation / [www.bigbuckbunny.org](www.bigbuckbunny.org)
 
 
 ### mono_fonts.py
 
 - mono_fonts.py test for [monofont2bitmap converter](../utils/monofont2bitmap.py) and bitmap method. This is the older method of
-converting monofonts to bitmaps.  See the newer method in prop_fonts/chango.py that works with
+converting monofonts to bitmaps. See the newer method in prop_fonts/chango.py that works with
 mono and proportional fonts using the write method.
 
 
@@ -200,7 +200,7 @@ display. If one of the lines are not showing or you see random pixels on the out
 white rectangle your display requires a colstart and/or rowstart offset. Some displays have a
 frame buffer memory larger than the physical LCD or LED matrix. In these cases the driver must
 be configured with the position of the first physical column and row pixels relative to the
-frame buffer.  Each rotation setting of the display may require different colstart and rowstart
+frame buffer. Each rotation setting of the display may require different colstart and rowstart
 values.
 
 - Use the 'W' and 'S' keys to increase or decrease the rowstart values by 10.
