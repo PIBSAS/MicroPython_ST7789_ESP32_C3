@@ -19,7 +19,7 @@ jobs:
       IDF_CCACHE_ENABLE: 1
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v4.2.2
+        uses: actions/checkout@v5.0.0
       
       - name: Clone MicroPython
         run: |
@@ -28,12 +28,13 @@ jobs:
       - id: idf_ver
         name: Read ESP-IDF and Python version from tools/ci.sh
         run: |
-          source micropython/tools/ci.sh
+          cd "$GITHUB_WORKSPACE/micropython"
+          source $GITHUB_WORKSPACE/micropython/tools/ci.sh
           echo "IDF_VER=${IDF_VER}" | tee -a "$GITHUB_OUTPUT"
           echo "PYTHON_VER=${PYTHON_VER}" | tee -a "$GITHUB_OUTPUT"
       
       - name: Setup Python from ci.sh
-        uses: actions/setup-python@v5.6.0
+        uses: actions/setup-python@v6.0.0
         with:
           python-version: ${{ steps.idf_ver.outputs.PYTHON_VER }}
 
@@ -46,7 +47,7 @@ jobs:
       
       - name: Cache ESP-IDF and environment
         id: cache-esp
-        uses: actions/cache@v4.2.3
+        uses: actions/cache@v4.2.4
         with:
           path: |
             esp-idf
@@ -184,7 +185,7 @@ jobs:
         run: echo "TAG_NAME=release-$(date +'%Y%m%d-%H%M')" >> $GITHUB_ENV
 
       - name: GH Release
-        uses: softprops/action-gh-release@v2.3.2
+        uses: softprops/action-gh-release@v2.3.3
         with:
           tag_name: ${{ env.TAG_NAME }}
           name: "MicroPython with ST7789 Driver for ESP32 C3 Release version ${{ env.MPY_VERSION }} (Build ${{ env.TAG_NAME }})"
