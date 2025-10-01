@@ -47,7 +47,7 @@ jobs:
       
       - name: Cache ESP-IDF and environment
         id: cache-esp
-        uses: actions/cache@v4.2.4
+        uses: actions/cache@v4.3.0
         with:
           path: |
             esp-idf
@@ -153,16 +153,6 @@ jobs:
             echo "Falta uno o más archivos binarios necesarios, cancelando release."
             exit 1
           fi
-
-      #- name: Upload firmware artifacts
-       # uses: actions/upload-artifact@v4.6.2
-       # with:
-        #  name: esp32c3-firmware
-         # path: |
-          #  micropython/ports/esp32/build-ESP32_C3_CUSTOM/firmware.bin
-           # micropython/ports/esp32/build-ESP32_C3_CUSTOM/bootloader/bootloader.bin
-          #  micropython/ports/esp32/build-ESP32_C3_CUSTOM/partition_table/partition-table.bin
-           # micropython/ports/esp32/build-ESP32_C3_CUSTOM/micropython.bin
 
       - name: Get MicroPython Version from mpconfig.h
         run: |
