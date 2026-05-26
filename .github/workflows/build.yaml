@@ -44,7 +44,7 @@ jobs:
       
       - name: Cache ESP-IDF and environment
         id: cache-esp
-        uses: actions/cache@v5.0.4
+        uses: actions/cache@v5.0.5
         with:
           path: |
             esp-idf
@@ -172,7 +172,7 @@ jobs:
         run: echo "TAG_NAME=release-$(date +'%Y%m%d-%H%M')" >> $GITHUB_ENV
 
       - name: GH Release
-        uses: softprops/action-gh-release@v2.6.1
+        uses: softprops/action-gh-release@v3.0.0
         with:
           tag_name: ${{ env.TAG_NAME }}
           name: "MicroPython with ST7789 Driver for ESP32 C3 Release version ${{ env.MPY_VERSION }} (Build ${{ env.TAG_NAME }})"
@@ -244,6 +244,18 @@ jobs:
             Set-ExecutionPolicy Unrestricted
             ```
             - Close the Terminal now you can activate the Python Virtual Enmvironment
+            
+            - [ESPWebTool Flasher](https://esptool.spacehuhn.com/):
+            
+            ````bash
+            - Put in Bootloader. Choose the USB/JTAG port.
+            - ERASE button first.
+            - Let it only:
+              - 0x0 bootloader.bin
+              - 0x8000 partition-table.bin
+              - 0x10000 micropython.bin
+              - Press PROGRAM after done, press RST button or Unplug the Board.
+            ````
             
           draft: false
           prerelease: false
