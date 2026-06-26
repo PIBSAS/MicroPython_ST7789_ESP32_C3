@@ -19,7 +19,7 @@ jobs:
       IDF_CCACHE_ENABLE: 1
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@v7.0.0
       
       - name: Clone MicroPython
         run: |
@@ -44,7 +44,7 @@ jobs:
       
       - name: Cache ESP-IDF and environment
         id: cache-esp
-        uses: actions/cache@v5.0.5
+        uses: actions/cache@v6.0.0
         with:
           path: |
             esp-idf
