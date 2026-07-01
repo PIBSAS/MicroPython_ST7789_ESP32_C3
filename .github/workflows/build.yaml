@@ -181,12 +181,13 @@ jobs:
             
             ## Windows or Linux:
             Create Virtual Environment
-            ```bash
+            
+            ```python
             python -m venv esp-env
             ```
             
             ### On Windows activate Virtual Environment this way:
-            ```bash
+            ```powershell
             .\esp-env\Scripts\activate
             ```
             ### On Linux activate Virtual Environment this way:
@@ -195,35 +196,41 @@ jobs:
             ```
             
             ### On Windows or Linux install esptool:
-            ```bash
+            ```python
             pip install esptool
             ```
             
             ### Put ESP32 C3 in BOOTLOADER MODE:
             - With USB cable on USB, press BOOT button then RST button, release RST, then release BOOT button. Or unplug, press BOOT button meanwhile you plug in the usb port on PC or SBC like a Raspberry Pi.
             - Alternative: Use Thonny IDE, plug your ESP32-C3, on Thonny Shell type:
-            ```bash
+            
+            ```python
             from machine import bootloader
             ```
             Press ``Enter`` then type:
-            ```bash
+            
+            ```python
             bootloader()
             ```
             Press ``Enter`` then just close Thonny and go to Terminal with Virtual Environment activate.
             
             ### Erase Flash:
-            ```bash
-            python -m esptool --chip esp32c3 erase-flash
+            
+            ```python
+            python -m esptool erase-flash
             ```
             
             #### Then Flash:
             - Put 3 binaries in the same folder you are executing the steps, example Downloads folder, you need to be in that folder where are the binaries.
-            ```bash
-            python -m esptool --chip esp32c3 -b 460800 --before default_reset --after hard_reset write_flash --flash_mode dio --flash_size 4MB --flash_freq 80m 0x0 bootloader.bin 0x8000 partition-table.bin 0x10000 micropython.bin
+            
+            ```python
+            python -m esptool write_flash 0x0 bootloader.bin 0x8000 partition-table.bin 0x10000 micropython.bin
             ```
+            
             - If you use the firmware.bin then:
-            ```bash
-            python -m esptool --chip esp32c3 --baud 460800 write_flash 0x0 firmware.bin
+            
+            ```python
+            python -m esptool write_flash 0x0 firmware.bin
             ```
             
             ### NOTE IN WINDOWS:
@@ -231,14 +238,14 @@ jobs:
             
             - Then open a Terminal like Administrator and type:
             
-            ```bash
+            ```powershell
             Set-ExecutionPolicy Unrestricted
             ```
             - Close the Terminal now you can activate the Python Virtual Enmvironment
             
             - [ESPWebTool Flasher](https://esptool.spacehuhn.com/):
             
-            ````bash
+            ````python
             - Put in Bootloader. Choose the USB/JTAG port.
             - ERASE button first.
             - Let it only:
